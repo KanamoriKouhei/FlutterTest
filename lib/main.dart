@@ -1,37 +1,39 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const Center(
-      child: Text(
-    'HELLO WORLD',
-    textDirection: TextDirection.ltr,
-  )));
+  runApp(const App());
 }
 
-// //アプリ本体
-// class App extends StatelessWidget {
-//   const App({Key? key}) : super(key: key);
+//アプリ本体
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'MaterialApp',
-//       theme: ThemeData.dark(),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MaterialApp',
+      theme: ThemeData.dark(),
+      home: Home(),
+    );
+  }
+}
 
-// //Home画面
-// class Home extends StatefulWidget {
-//   Home({Key? key}) : super(key: key);
+class Home extends StatelessWidget {
+  const Home({Key? key}) : super(key: key);
 
-//   @override
-//   _HomeState createState() => _HomeState();
-// }
-
-// class _HomeState extends State<Home> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // ignore: prefer_const_constructors
+      child: Text(
+        'aaaa',
+        textDirection: TextDirection.ltr,
+        textAlign: TextAlign.center,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.black,
+      ),
+    );
+  }
+}
