@@ -25,11 +25,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // ignore: prefer_const_constructors
-      child: Text(
-        'aaaa',
-        textDirection: TextDirection.ltr,
-        textAlign: TextAlign.center,
+      child: Center(
+        child: Text('aaaa'),
       ),
       decoration: BoxDecoration(
         color: Colors.black,
