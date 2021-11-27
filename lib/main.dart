@@ -5,7 +5,6 @@ void main() {
   runApp(const App());
 }
 
-//アプリ本体
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
@@ -13,24 +12,32 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MaterialApp',
-      theme: ThemeData.dark(),
       home: Home(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
+//home画面
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
-
+  Home({Key? key}) : super(key: key);
+  final textContainer = Container(
+    color: Colors.black,
+    child: Text(
+      'aaaa',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+      ),
+    ),
+  );
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('aaaa'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('HomeTitle'),
       ),
-      decoration: BoxDecoration(
-        color: Colors.black,
-      ),
+      body: Center(child: textContainer),
     );
   }
 }
