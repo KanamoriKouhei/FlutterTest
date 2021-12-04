@@ -23,14 +23,28 @@ class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
   final textContainer = Container(
     color: Colors.black,
-    child: Text(
-      'aaaa',
+    child: const Text(
+      'test',
       style: TextStyle(
         color: Colors.white,
         fontSize: 20,
       ),
     ),
   );
+  final bottomBarItems = const <BottomNavigationBarItem>[
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: 'home',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.search),
+      label: 'search',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.settings),
+      label: 'settings',
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +56,7 @@ class Home extends StatelessWidget {
         // bottomOpacity: 1.0,
       ),
       body: Center(child: textContainer),
+      bottomNavigationBar: BottomNavigationBar(items: bottomBarItems),
     );
   }
 }
