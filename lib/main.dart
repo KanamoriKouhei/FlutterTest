@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,44 +15,84 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MaterialApp',
-      home: Home(),
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Home(),
+        'search': (context) => Search(),
+      },
     );
   }
 }
 
-//home画面
+const bottomBarItems = <BottomNavigationBarItem>[
+  BottomNavigationBarItem(
+    icon: Icon(Icons.home),
+    label: 'home',
+  ),
+  BottomNavigationBarItem(
+    icon: Icon(Icons.search),
+    label: 'search',
+  ),
+  BottomNavigationBarItem(
+    icon: Icon(Icons.settings),
+    label: 'settings',
+  ),
+];
+
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
   final textContainer = Container(
     color: Colors.black,
     child: const Text(
-      'test',
+      'home',
       style: TextStyle(
         color: Colors.white,
         fontSize: 20,
       ),
     ),
   );
-  final bottomBarItems = const <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: 'home',
+  @override
+  Widget build(BuildContext context) {
+    final buttonContainer = Container(
+      child: ElevatedButton(
+        child: Text('push me'),
+        onPressed: () => {Navigator.pushNamed(context, 'search')},
+      ),
+    );
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('home'),
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+        //↓これ変えても、変わらない SilverAppBar用らしい
+        // bottomOpacity: 1.0,
+      ),
+      body: Center(child: buttonContainer),
+      bottomNavigationBar: BottomNavigationBar(items: bottomBarItems),
+    );
+  }
+}
+
+class Search extends StatelessWidget {
+  Search({Key? key}) : super(key: key);
+  final textContainer = Container(
+    color: Colors.black,
+    child: const Text(
+      'search',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+      ),
     ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.search),
-      label: 'search',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: 'settings',
-    ),
-  ];
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('search'),
         backgroundColor: Colors.orange,
         centerTitle: true,
         //↓これ変えても、変わらない SilverAppBar用らしい
