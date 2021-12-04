@@ -35,7 +35,11 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomeTitle'),
+        title: Text('Home'),
+        backgroundColor: Colors.orange,
+        centerTitle: true,
+        //↓これ変えても、変わらない SilverAppBar用らしい
+        // bottomOpacity: 1.0,
       ),
       body: Center(child: textContainer),
     );
