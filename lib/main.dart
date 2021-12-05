@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     title: 'MaterialApp',
-    initialRoute: '/',
+    initialRoute: '/home',
     routes: <String, WidgetBuilder>{
-      '/': (BuildContext context) => const Home(),
-      'search': (BuildContext context) => const Search(),
-      'settings': (BuildContext context) => const Settings(),
+      '/home': (BuildContext context) => const Home(),
+      '/search': (BuildContext context) => const Search(),
+      '/settings': (BuildContext context) => const Settings(),
     },
   ));
 }
@@ -15,7 +15,6 @@ void main() {
 class BottomBar extends StatelessWidget {
   int index = 0; // ignore: use_key_in_widget_constructors
   BottomBar(this.index, {Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -24,19 +23,19 @@ class BottomBar extends StatelessWidget {
             label: 'Home',
             icon: IconButton(
               icon: const Icon(Icons.home),
-              onPressed: () => {Navigator.pushNamed(context, '/')},
+              onPressed: () => {Navigator.pushNamed(context, '/home')},
             )),
         BottomNavigationBarItem(
             label: 'Search',
             icon: IconButton(
               icon: const Icon(Icons.search),
-              onPressed: () => {Navigator.pushNamed(context, 'search')},
+              onPressed: () => {Navigator.pushNamed(context, '/search')},
             )),
         BottomNavigationBarItem(
             label: 'Settings',
             icon: IconButton(
               icon: const Icon(Icons.settings),
-              onPressed: () => {Navigator.pushNamed(context, 'settings')},
+              onPressed: () => {Navigator.pushNamed(context, '/settings')},
             )),
       ],
       currentIndex: index,
