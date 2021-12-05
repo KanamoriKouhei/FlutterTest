@@ -1,105 +1,90 @@
-import 'dart:html';
-import 'dart:js';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const App());
+  runApp(MaterialApp(
+    title: 'MaterialApp',
+    initialRoute: '/',
+    routes: <String, WidgetBuilder>{
+      '/': (BuildContext context) => const Home(),
+      'search': (BuildContext context) => const Search(),
+      'settings': (BuildContext context) => const Settings(),
+    },
+  ));
 }
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class BottomBar extends StatelessWidget {
+  int index = 0; // ignore: use_key_in_widget_constructors
+  BottomBar(this.index, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'MaterialApp',
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Home(),
-        'search': (context) => Search(),
-      },
+    return BottomNavigationBar(
+      items: [
+        BottomNavigationBarItem(
+            label: 'Home',
+            icon: IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () => {Navigator.pushNamed(context, '/')},
+            )),
+        BottomNavigationBarItem(
+            label: 'Search',
+            icon: IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () => {Navigator.pushNamed(context, 'search')},
+            )),
+        BottomNavigationBarItem(
+            label: 'Settings',
+            icon: IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () => {Navigator.pushNamed(context, 'settings')},
+            )),
+      ],
+      currentIndex: index,
     );
   }
 }
 
-const bottomBarItems = <BottomNavigationBarItem>[
-  BottomNavigationBarItem(
-    icon: Icon(Icons.home),
-    label: 'home',
-  ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.search),
-    label: 'search',
-  ),
-  BottomNavigationBarItem(
-    icon: Icon(Icons.settings),
-    label: 'settings',
-  ),
-];
-
 class Home extends StatelessWidget {
-  Home({Key? key}) : super(key: key);
-  final textContainer = Container(
-    color: Colors.black,
-    child: const Text(
-      'home',
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 20,
-      ),
-    ),
-  );
+  const Home({Key? key}) : super(key: key);
+  final index = 0;
   @override
   Widget build(BuildContext context) {
-    final buttonContainer = Container(
-      child: ElevatedButton(
-        child: Text('push me'),
-        onPressed: () => {Navigator.pushNamed(context, 'search')},
-      ),
-    );
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('home'),
-        backgroundColor: Colors.orange,
-        centerTitle: true,
-        //↓これ変えても、変わらない SilverAppBar用らしい
-        // bottomOpacity: 1.0,
-      ),
-      body: Center(child: buttonContainer),
-      bottomNavigationBar: BottomNavigationBar(items: bottomBarItems),
-    );
+        body: Container(
+          child: const Center(
+            child: Text('Home'),
+          ),
+        ),
+        bottomNavigationBar: BottomBar(index));
   }
 }
 
 class Search extends StatelessWidget {
-  Search({Key? key}) : super(key: key);
-  final textContainer = Container(
-    color: Colors.black,
-    child: const Text(
-      'search',
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 20,
-      ),
-    ),
-  );
-
+  const Search({Key? key}) : super(key: key);
+  final index = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('search'),
-        backgroundColor: Colors.orange,
-        centerTitle: true,
-        //↓これ変えても、変わらない SilverAppBar用らしい
-        // bottomOpacity: 1.0,
-      ),
-      body: Center(child: textContainer),
-      bottomNavigationBar: BottomNavigationBar(items: bottomBarItems),
-    );
+        body: Container(
+          child: const Center(
+            child: Text('Search'),
+          ),
+        ),
+        bottomNavigationBar: BottomBar(index));
+  }
+}
+
+class Settings extends StatelessWidget {
+  const Settings({Key? key}) : super(key: key);
+  final index = 2;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+          child: const Center(
+            child: Text('Settings'),
+          ),
+        ),
+        bottomNavigationBar: BottomBar(index));
   }
 }
